@@ -1,4 +1,13 @@
+# code
+.vscode
+
+# cache files
 *.pyc
+
+# notebooks
 *.ipynb_checkpoints
 *.DS_Store
-.vscode
+
+# coverage
+coverage/
+!coverage/.coveragerc

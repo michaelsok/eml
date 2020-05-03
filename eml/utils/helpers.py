@@ -17,5 +17,5 @@ def _normalize(array, axis=None):
     array = array.copy()
     normalizer = array.sum(axis=axis)
     if normalizer > .0:
-        array /= normalizer
+        array = array / normalizer
     return array
