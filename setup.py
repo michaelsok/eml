@@ -7,7 +7,7 @@ import os
 from setuptools import find_packages, setup
 
 # Meta-data
-NAME = "qmxplainer"
+NAME = "eml"
 DESCRIPTION = "Explained Machine Learning - Library for interpretability methods"
 LONG_DESCRIPTION_CONTENT_TYPE = "text/markdown"
 EMAIL = "mdb.sok@gmail.com"
