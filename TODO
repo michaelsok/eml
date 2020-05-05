@@ -1,0 +1,13 @@
+- Main issues
+    - [x] implement MDI
+    - [ ] implement MDI unit tests
+    - [ ] implement MDA
+    - [ ] implement MDA unit tests
+    - [ ] implement pdp
+    - [ ] implement pdp unit tests
+    - [ ] implement ice curves
+    - [ ] implement ice curves unit tests
+    - [ ] implement tree interpreter
+    - [ ] implement tree interpreter unit tests
+- Secondary issues
+    - [ ] implement MDI-like with data and target

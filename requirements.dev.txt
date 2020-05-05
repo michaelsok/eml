@@ -1,0 +1,6 @@
+-r requirements.txt
+jupyter==1.0.0
+matplotlib==3.2.1
+pytest
+pytest-cov
+pytest-mock
