@@ -70,6 +70,8 @@ def _get_node_from(index, left, right, feature, value, impurity, n_node_samples)
 
 def get_sklearn_nodes_from(tree, X=None, weighted=True):
     """Return sklearn instantiated nodes from a tree
+    TODO: X & weighted : two n_node_samples from two children don't sum up to n_node_samples from their parent
+    TODO: it should be fixed by introducing a y and use it to obtain true weight
 
     Parameters
     ----------
