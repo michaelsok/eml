@@ -7,6 +7,9 @@ install:
 install-dev: install
 	pip install -r requirements.dev.txt
 
+unittest:
+	pytest tests/units/${TESTPATH}
+
 test: install-dev
 	pytest tests/
 
