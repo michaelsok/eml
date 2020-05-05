@@ -4,6 +4,7 @@ import copy
 import pytest
 import numpy as np
 from scipy.sparse import csr_matrix
+from sklearn.tree import BaseDecisionTree
 
 from eml.importances._nodes import Leaf, Node, _get_node_from, get_sklearn_nodes_from
 
@@ -44,9 +45,10 @@ def pseudo_tree():
             self.children_left = [1, 2, -1, -1, 5, -1, -1]
             self.children_right = [4, 3, -1, -1, 6, -1, -1]
             self.n_node_samples = [100, 50, 35, 15, 50, 35, 15]
-            self.weighted_n_node_samples = [100., 50., 35., 15., 50., 35., 15.]
+            self.weighted_n_node_samples = [130., 65., 35., 30., 65., 35., 30.]
+            self.node_count = 7
 
-    class PseudoTree(object):
+    class PseudoTree(BaseDecisionTree):
         def __init__(self):
             self.tree_ = PseudoTreeAttributes()
 
@@ -67,7 +69,6 @@ def pseudo_tree():
             return csr_matrix(decisions_paths)
 
     return PseudoTree()
-
 
 
 def test_leaf_initialization(leaf_initializers):
@@ -147,13 +148,13 @@ def test__get_node_from(node_initializers):
 def test_get_sklearn_nodes_from(pseudo_tree):
     nodes = get_sklearn_nodes_from(pseudo_tree)
     expected_nodes = [
-        Node(index=0, left=1, right=4, feature=0, value=[.7, .3], impurity=.42, n_node_samples=100.),
-        Node(index=1, left=2, right=3, feature=1, value=[.7, .3], impurity=.42, n_node_samples=50.),
+        Node(index=0, left=1, right=4, feature=0, value=[.7, .3], impurity=.42, n_node_samples=130.),
+        Node(index=1, left=2, right=3, feature=1, value=[.7, .3], impurity=.42, n_node_samples=65.),
         Leaf(index=2, value=[1., 0.], impurity=0., n_node_samples=35.),
-        Leaf(index=3, value=[0., 1.], impurity=0., n_node_samples=15.),
-        Node(index=4, left=5, right=6, feature=2, value=[.7, .3], impurity=.42, n_node_samples=50.),
+        Leaf(index=3, value=[0., 1.], impurity=0., n_node_samples=30.),
+        Node(index=4, left=5, right=6, feature=2, value=[.7, .3], impurity=.42, n_node_samples=65.),
         Leaf(index=5, value=[1., 0.], impurity=0., n_node_samples=35.),
-        Leaf(index=6, value=[0., 1.], impurity=0., n_node_samples=15.)
+        Leaf(index=6, value=[0., 1.], impurity=0., n_node_samples=30.)
     ]
 
     assert nodes == expected_nodes
@@ -210,15 +211,15 @@ def test_get_sklearn_nodes_from_weighted_X(pseudo_tree):
         [1, 1, 1, 1],
         [0, 0, 0, 1]
     ])
-    nodes = get_sklearn_nodes_from(pseudo_tree, X=X, weighted=False)
+    nodes = get_sklearn_nodes_from(pseudo_tree, X=X, weighted=True)
     expected_nodes = [
-        Node(index=0, left=1, right=4, feature=0, value=[.7, .3], impurity=.42, n_node_samples=8.),
-        Node(index=1, left=2, right=3, feature=1, value=[.7, .3], impurity=.42, n_node_samples=4.),
+        Node(index=0, left=1, right=4, feature=0, value=[.7, .3], impurity=.42, n_node_samples=10.4),
+        Node(index=1, left=2, right=3, feature=1, value=[.7, .3], impurity=.42, n_node_samples=5.2),
         Leaf(index=2, value=[1., 0.], impurity=0., n_node_samples=2.),
-        Leaf(index=3, value=[0., 1.], impurity=0., n_node_samples=2.),
-        Node(index=4, left=5, right=6, feature=2, value=[.7, .3], impurity=.42, n_node_samples=4.),
+        Leaf(index=3, value=[0., 1.], impurity=0., n_node_samples=4.),
+        Node(index=4, left=5, right=6, feature=2, value=[.7, .3], impurity=.42, n_node_samples=5.2),
         Leaf(index=5, value=[1., 0.], impurity=0., n_node_samples=0.),
-        Leaf(index=6, value=[0., 1.], impurity=0., n_node_samples=4.)
+        Leaf(index=6, value=[0., 1.], impurity=0., n_node_samples=8.)
     ]
 
     assert nodes == expected_nodes
