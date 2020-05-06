@@ -11,3 +11,8 @@
 # coverage
 coverage/
 !coverage/.coveragerc
+
+# dist
+dist/
+build/
+eml.egg-info
