@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def _normalize(array, axis=None):
+def normalize(array, axis=None):
     '''Normalize a positive array (creates a copy of the array) along a given axis when feasible
 
     Parameters
@@ -50,3 +50,11 @@ def are_equal(obj1, obj2):
             return False
 
     return True
+
+
+def as_array(element):
+    if isinstance(element, (pd.DataFrame, pd.Series, pd.Index)):
+        return element.values
+    elif isinstance(element, np.ndarray):
+        return element
+    return np.array(element)
