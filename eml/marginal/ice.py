@@ -9,10 +9,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from eml.utils.helpers import as_array
 
 
-class IndividualConditionalExpectation(BaseEstimator, TransformerMixin):
-    def __init__(self, task='infer'):
-        self.task = task
-
+class ICE(BaseEstimator, TransformerMixin):
     def fit(self, estimator):
         check_is_fitted(estimator)
         if hasattr(estimator, 'predict_proba'):
