@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def normalize(array, axis=None):
+def normalize_array(array, axis=None):
     '''Normalize a positive array (creates a copy of the array) along a given axis when feasible
 
     Parameters

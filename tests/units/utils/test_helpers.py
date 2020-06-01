@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 import pandas as pd
 
-from eml.utils.helpers import normalize, _are_equal, are_equal
+from eml.utils.helpers import normalize_array, _are_equal, are_equal
 
 
 def test_normalize():
