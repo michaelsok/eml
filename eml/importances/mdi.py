@@ -7,7 +7,7 @@ from sklearn.ensemble._weight_boosting import BaseWeightBoosting
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_is_fitted
 
-from eml.utils.helpers import normalize
+from eml.utils.helpers import normalize_array
 from eml.importances._nodes import Node, get_sklearn_nodes_from
 
 
@@ -202,7 +202,7 @@ class MeanDecreaseImpurity(BaseEstimator, TransformerMixin):
 
         importances /= n_estimators
         if normalize:
-            importances = normalize(importances, axis=None)
+            importances = normalize_array(importances, axis=None)
 
         return importances
 
@@ -232,7 +232,7 @@ class MeanDecreaseImpurity(BaseEstimator, TransformerMixin):
                 importances[n.feature] += self._compute_impurity_importance_from(n, left, right)
         importances /= nodes[0].n_node_samples
         if normalize:
-            importances = normalize(importances, axis=None)
+            importances = normalize_array(importances, axis=None)
         return importances
 
     @staticmethod    
