@@ -6,7 +6,7 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.tree import BaseDecisionTree
 
-from eml.importances._nodes import Leaf, Node, _get_node_from, get_sklearn_nodes_from
+from eml._tree.nodes import Leaf, Node, _get_node_from, get_sklearn_nodes_from
 
 
 @pytest.fixture
