@@ -11,8 +11,8 @@ from sklearn.svm import SVC
 from sklearn.exceptions import NotFittedError
 from scipy.sparse import csr_matrix
 
+from eml._tree.nodes import Node, Leaf
 from eml.importances.mdi import MeanDecreaseImpurity
-from eml.importances._nodes import Node, Leaf
 
 
 @pytest.fixture

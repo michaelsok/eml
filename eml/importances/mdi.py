@@ -8,7 +8,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_is_fitted
 
 from eml.utils.helpers import normalize_array
-from eml.importances._nodes import Node, get_sklearn_nodes_from
+from eml._tree.nodes import Node, get_sklearn_nodes_from
 
 
 SKLEARN_BASE_MODELS = (BaseForest, BaseDecisionTree, BaseWeightBoosting, BaseGradientBoosting)

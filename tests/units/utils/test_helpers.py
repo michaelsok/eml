@@ -7,7 +7,7 @@ from eml.utils.helpers import normalize_array, _are_equal, are_equal
 
 def test_normalize():
     array = np.array([1, 2, 3, 4])
-    normalized_array = normalize(array, axis=None)
+    normalized_array = normalize_array(array, axis=None)
     expected_array = np.array([.1, .2, .3, .4])
 
     np.testing.assert_allclose(normalized_array, expected_array)
@@ -15,7 +15,7 @@ def test_normalize():
 
 def test_normalize_zero_sum():
     array = np.array([0, 0, 0, 0])
-    normalized_array = normalize(array, axis=None)
+    normalized_array = normalize_array(array, axis=None)
     expected_array = np.array([.0, .0, .0, .0])
 
     np.testing.assert_allclose(normalized_array, expected_array)
@@ -24,7 +24,7 @@ def test_normalize_zero_sum():
 def test_normalize_error():
     array = np.array(['a', 'b', 'c', 'd'])
     with pytest.raises(TypeError):
-        normalize(array, axis=None)
+        normalize_array(array, axis=None)
 
 
 def test_are_equal():
