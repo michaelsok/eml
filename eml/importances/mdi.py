@@ -235,17 +235,17 @@ class MeanDecreaseImpurity(BaseEstimator, TransformerMixin):
             importances = normalize_array(importances, axis=None)
         return importances
 
-    @staticmethod    
+    @staticmethod
     def _compute_impurity_importance_from(node, left, right):
         """Impurity performance between a node and its children
 
         Parameters
         ----------
-        node : eml.importances._nodes.Node
+        node : eml._tree.nodes.Node
             parent node used to compute impurity gain
-        left : eml.importances._nodes.Node or eml.importances._nodes.Leaf
+        left : eml._tree.nodes.Node or eml._tree.nodes.Leaf
             left child of parent node
-        right : eml.importances._nodes.Node or eml.importances._nodes.Leaf
+        right : eml._tree.nodes.Node or eml._tree.nodes.Leaf
             right child of parent node
 
         Returns

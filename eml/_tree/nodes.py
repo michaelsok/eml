@@ -5,7 +5,7 @@ class Leaf:
     """Leaf node from a tree like model"""
     def __init__(self, index, value, impurity, n_node_samples):
         self.index = index
-        self.value = value
+        self.value = value[0]
         self.impurity = impurity
         self.n_node_samples = n_node_samples
 
@@ -26,6 +26,14 @@ class Leaf:
 
         """
         return self.n_node_samples * self.impurity
+
+    @property
+    def contains_probability(self):
+        return hasattr(self.value, '__len__')
+
+    @property
+    def share_value(self):
+        return self.value / self.n_node_samples if self.contains_probability else self.value
 
 
 class Node(Leaf):
